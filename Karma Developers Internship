@@ -1,0 +1,42 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.graph_objects as gr
+from PIL import Image
+img=Image.open(r"C:\assesment\IMG_20220617_174832.jpg")
+st.image(img,width=700)
+st.title("Dungeons and Dragons")
+st.subheader("Please input no. of coins that you have(in appropriate box)")
+copper=0.01
+silver=0.1
+electrium=0.5
+gold=1
+platinum=10
+placeholder_copper=st.empty()
+placeholder_silver=st.empty()
+placeholder_electrium=st.empty()
+placeholder_gold=st.empty()
+placeholder_platinum=st.empty()
+numcopper=placeholder_copper.number_input("Enter no. of copper coins that you have",min_value=0)
+numsilver=placeholder_silver.number_input("Enter no. of silver coins that you have",min_value=0)
+numelectrium=placeholder_electrium.number_input("Enter no. of electrium coins that you have",min_value=0)
+numgold=placeholder_gold.number_input("Enter no. of gold coins that you have",min_value=0)
+numplatinum=placeholder_platinum.number_input("Enter no. of platinum coins that you have",min_value=0)
+total=(numcopper*copper)+(numsilver*silver)+(numelectrium*electrium)+(numgold*gold)+(numplatinum*platinum)
+total=round(total)
+st.write("The total no. of currency that you have")
+st.write(total)
+coins=[
+       {"values":copper,"count":numcopper},
+       {"values":silver,"count":silver},
+       {"values":electrium,"count":numelectrium},
+       {"values":gold,"count":numgold},
+       {"values":platinum,"count":numplatinum}
+       ]
+df=pd.DataFrame(coins)
+st.write(df)
+data=df
+st.bar_chart(df)
+st.line_chart(df)
+st.area_chart(df)
